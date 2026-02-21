@@ -20,6 +20,10 @@ body::after {
 
   z-index: 0;
 }
+.switch-wrapper {
+    position: relative;
+    display: inline-block;
+}
 
 body.light-off::after {
   opacity: 0.75;
@@ -34,8 +38,9 @@ transition: opacity 0.45s cubic-bezier(0.4, 0, 0.1, 1);
 .text{
     color: black;
     position: absolute;
-    left: 57.5vh;
-    top: 35vh;
+    left: 5%;
+    bottom: 100%;
+    white-space: nowrap;
 }
 
 /* 스위치 프레임 */
