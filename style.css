@@ -1,0 +1,151 @@
+@charset "utf-8";
+
+body {
+  background: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgb(83, 83, 83);
+
+  opacity: 0;                 /* 기본 = 밝음 */
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  z-index: 0;
+}
+
+body.light-off::after {
+  opacity: 0.75;
+  background: radial-gradient(
+  circle at center,
+  rgba(0, 0, 0, 0.644),
+  rgb(0, 0, 0)
+    );
+transition: opacity 0.45s cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+.text{
+    color: black;
+    position: absolute;
+    left: 57.5vh;
+    top: 35vh;
+}
+
+/* 스위치 프레임 */
+.switch {
+  width: 100px;
+  height: 180px;
+  background: #ffffff;
+  box-shadow:
+    0 0px 2px rgba(0,0,0,0.2),
+    0 0px 2px rgba(0,0,0,0.2);
+  position: relative;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* 꺼짐 */
+.switch.off::before {
+  content: "";
+  left: 20px;
+  right: 21px;
+}
+
+/* default 켜짐 */
+.switch::before {
+  z-index: 2;
+  content: "";
+  position: absolute;
+  left: 21px;
+  right: 20px;
+  top: 20px;
+  height: 140px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.397);
+  border-radius: 4px;
+}
+
+.dark{
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.dark::before{
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 140px;
+    left: 20px;
+    top: 20px;
+    background-color: black;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.205);
+    border-radius: 5px;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; 
+  z-index: 3;
+}
+
+/* default 켜짐 */
+.pattern::before {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 130px;
+  background: #f7f7f7;
+  left: 42%;
+  top: 25px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+
+  clip-path: polygon(
+    0% 1%,      /* 좌상 */
+    100% 0%,    /* 우상 */
+    100% 100%,   /* 우하 (내림) */
+    0% 99%     /* 좌하 */
+  );
+}
+
+.switch.off .pattern::before{
+    left: 41%;
+
+    clip-path: polygon(
+    0% 0%,      /* 좌상 */
+    100% 1%,    /* 우상 */
+    100% 99%,   /* 우하 (내림) */
+    0% 100%     /* 좌하 */
+  );
+}
+
+/* default 켜짐 */
+.pattern::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 3px;
+  background: #f7f7f7;
+  left: 73%;
+  top: 50%;
+  transform: translateX(-50%);
+  box-shadow:
+    0 5px 0 #f7f7f7; 
+  border-radius: 2px 0px 0px 2px;
+}
+
+/* 꺼짐 */
+.switch.off .pattern::after {
+  left: 72%;
+}
